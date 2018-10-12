@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.2.0",
+    "lodash": "^4.17.11",
     "roboto-fontface": "*",
     "uuid": "^3.3.2",
     "vue": "^2.5.17",
