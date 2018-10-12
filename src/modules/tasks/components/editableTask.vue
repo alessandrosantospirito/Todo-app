@@ -5,24 +5,28 @@
                 <v-flex>
                     <input v-model="name">
                 </v-flex>
-                <v-flex>
-                    <v-checkbox
-                        v-model="isFinished"
-                        v-on:change="editTask">
-                    </v-checkbox>
-                </v-flex>
-                <v-flex>
-                    <button v-on:click="editTask">
-                        <v-icon>
-                            edit
-                        </v-icon>
-                    </button>
-                </v-flex>
-                <v-flex>
-                    <v-icon>
-                        delete
-                    </v-icon>
-                </v-flex>
+                <v-layout>
+                    <v-flex >
+                        <v-checkbox
+                            v-model="isFinished"
+                            v-on:change="editTask">
+                        </v-checkbox>
+                    </v-flex>
+                    <v-flex>
+                        <button v-on:click="editTask">
+                            <v-icon>
+                                edit
+                            </v-icon>
+                        </button>
+                    </v-flex>
+                    <v-flex>
+                        <button v-on:click="deleteTask">
+                            <v-icon>
+                                delete
+                            </v-icon>
+                        </button>
+                    </v-flex>
+                </v-layout>
             </v-layout>
         </v-card>
     </div>
@@ -37,16 +41,24 @@
             return {
                 uuid: this.task.uuid,
                 name: this.task.name,
+                listNumber: this.task.listNumber,
                 isFinished: this.task.isFinished,
             }
         },
         methods: {
             ...mapActions("tasks", ["changeTask"]),
+            ...mapMutations("tasks", ["removeTask"]),
             editTask() {
-                this.changeTask({ name: this.name, isFinished: this.isFinished, uuid: this.uuid })
+                this.changeTask(this.selectedTask)
             },
+            deleteTask() {
+                this.removeTask(this.selectedTask)
+            }
         },
         computed: {
+            selectedTask() {
+                return {name: this.name, isFinished: this.isFinished, uuid: this.uuid, listNumber: this.listNumber}
+            }
         }
     }
 </script>

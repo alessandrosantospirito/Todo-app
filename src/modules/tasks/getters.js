@@ -7,5 +7,5 @@ export default {
     getTask: 
         state => taskToFind => {
             return _.find(state.items, task => task.uuid === taskToFind.uuid)
-        }
+        },
 }
