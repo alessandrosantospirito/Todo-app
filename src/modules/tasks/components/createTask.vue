@@ -2,7 +2,7 @@
     <v-app>
         <v-container>
         {{ items }}
-            <v-flex xs5>
+            <v-flex xs8>
                 <v-card>
                     <v-card-text>
                         <input v-model="currentText">
