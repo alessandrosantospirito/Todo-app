@@ -22,7 +22,7 @@
                     <v-flex>
                         <button v-on:click="deleteTask">
                             <v-icon>
-                                delete
+                                remove_circle
                             </v-icon>
                         </button>
                     </v-flex>
@@ -36,12 +36,11 @@
     import { mapMutations, mapActions } from "vuex"
 
     export default {
-        props: ["task"],
+        props: ["task", "listUuid"],
         data() {
             return {
-                uuid: this.task.uuid,
+                taskUuid: this.task.taskUuid,
                 name: this.task.name,
-                listNumber: this.task.listNumber,
                 isFinished: this.task.isFinished,
             }
         },
@@ -57,8 +56,8 @@
         },
         computed: {
             selectedTask() {
-                return {name: this.name, isFinished: this.isFinished, uuid: this.uuid, listNumber: this.listNumber}
-            }
+                return {listUuid: this.listUuid, task: {name: this.name, isFinished: this.isFinished, taskUuid: this.taskUuid}}
+            },
         }
     }
 </script>
